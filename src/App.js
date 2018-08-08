@@ -1,6 +1,19 @@
 import React, { Component, Fragment } from 'react';
 import './App.css';
 
+const CARD_IMAGES = [
+  'angular',
+  'd3',
+  'jenkins',
+  'postcss',
+  'react',
+  'redux',
+  'sass',
+  'supercharge',
+  'ts',
+  'webpack',
+];
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -11,7 +24,7 @@ class App extends Component {
       freeze: false,
     };
 
-    this.numberOfCards = Array.from({ length: 15 }).map((_, index) => index + 6);
+    this.numberOfCards = Array.from({ length: 5 }).map((_, index) => index + 6);
   }
 
   initializeDeck(deckSize) {
@@ -40,18 +53,34 @@ class App extends Component {
   render() {
     return (
       <Fragment>
-        <div>
+        <div style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+        }}>
           {this.state.deck.map((card) => (
             <div
               key={card.key}
               style={{
-                display: 'inline-block',
-                padding: '1rem',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '100px',
+                height: '100px',
                 border: '1px solid #ccc',
               }}
               onClick={() => this.onCardClick(card)}
             >
-              {(card.revealed || card.matched) ? card.value : 'X'}
+              {(card.revealed || card.matched) && (
+                <img
+                  src={`./cards/${CARD_IMAGES[card.value]}.png`}
+                  alt={CARD_IMAGES[card.value]}
+                  style={{
+                    display: 'inline-block',
+                    width: '50px',
+                    height: '50px',
+                  }}
+                />
+              )}
             </div>
           ))}
         </div>
