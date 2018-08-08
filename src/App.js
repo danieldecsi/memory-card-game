@@ -5,7 +5,13 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    const DECK_SIZE = 6;
+    this.state = {
+      deck: this.initializeDeck(),
+    };
+  }
+
+  initializeDeck() {
+    const DECK_SIZE = 3;
 
     const deck = [
       ...Array.from({ length: DECK_SIZE }).map((_, index) => index),
@@ -17,9 +23,7 @@ class App extends Component {
       [deck[i], deck[randomPosition]] = [deck[randomPosition], deck[i]];
     }
 
-    this.state = {
-      deck,
-    };
+    return deck;
   }
 
   intializeCard = (value, index) => {
@@ -34,19 +38,22 @@ class App extends Component {
   render() {
     return (
       <Fragment>
-        {this.state.deck.map((card) => (
-          <div
-            key={card.key}
-            style={{
-              display: 'inline-block',
-              padding: '1rem',
-              border: '1px solid #ccc',
-            }}
-            onClick={() => this.onCardClick(card)}
-          >
-            {(card.revealed || card.matched) ? card.value : 'X'}
-          </div>
-        ))}
+        <div>
+          {this.state.deck.map((card) => (
+            <div
+              key={card.key}
+              style={{
+                display: 'inline-block',
+                padding: '1rem',
+                border: '1px solid #ccc',
+              }}
+              onClick={() => this.onCardClick(card)}
+            >
+              {(card.revealed || card.matched) ? card.value : 'X'}
+            </div>
+          ))}
+        </div>
+        <button onClick={this.restart}>Restart</button>
       </Fragment>
     );
   }
@@ -120,6 +127,12 @@ class App extends Component {
     if (win) {
       alert('Nyertel');
     }
+  }
+
+  restart = () => {
+    this.setState(() => ({
+      deck: this.initializeDeck(),
+    }))
   }
 }
 
