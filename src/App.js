@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import './App.css';
+import { Header } from './components/header/Header';
 
 const CARD_IMAGES = [
   'angular',
@@ -24,7 +25,7 @@ class App extends Component {
       freeze: false,
     };
 
-    this.numberOfCards = Array.from({ length: 5 }).map((_, index) => index + 6);
+    this.deckSizeOptions = Array.from({ length: 5 }).map((_, index) => index + 6);
   }
 
   initializeDeck(deckSize) {
@@ -53,6 +54,13 @@ class App extends Component {
   render() {
     return (
       <Fragment>
+        <Header
+          deckSize={this.state.deckSize}
+          onDeckSizeChange={this.onDeckSizeChange}
+          deckSizeOptions={this.deckSizeOptions}
+          onStarNewGamePress={this.onNewGameClick}
+        />
+
         <div style={{
           display: 'flex',
           flexWrap: 'wrap',
@@ -84,15 +92,6 @@ class App extends Component {
             </div>
           ))}
         </div>
-        <select
-          value={this.state.deckSize}
-          onChange={this.onDeckSizeChange}
-        >
-          {this.numberOfCards.map((n) => (
-            <option key={n} value={n}>{n}</option>
-          ))}
-        </select>
-        <button onClick={this.restart}>Restart</button>
       </Fragment>
     );
   }
@@ -182,7 +181,7 @@ class App extends Component {
     this.setState(() => ({ deckSize }));
   }
 
-  restart = () => {
+  onNewGameClick = () => {
     this.setState(({ deckSize }) => ({
       deck: this.initializeDeck(deckSize),
     }))

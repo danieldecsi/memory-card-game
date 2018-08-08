@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="154px" height="155px" viewBox="0 0 154 155" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
+    <title>logo_2017_no_text</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="8.96126743e-15 136.753585 8.96126743e-15 0.048803367 119.932736 0.048803367 119.932736 136.753585"></polygon>
+    </defs>
+    <g id="UI" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-290.000000, -120.000000)">
+            <g id="logo_2017_no_text" transform="translate(290.000000, 120.000000)">
+                <polygon id="Fill-24" fill="#FFFFFF" fill-rule="nonzero" points="112 90.2170109 28 153 90.7829891 69"></polygon>
+                <polygon id="Fill-26" fill="#FFFFFF" fill-rule="nonzero" points="129 6 66.2174702 90 45 68.7825298"></polygon>
+                <g id="Group-30">
+                    <g id="Fill-28-Clipped">
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <g id="path-1"></g>
+                        <path d="M27.9088276,136.753585 L35.3221609,126.80148 C21.2927356,114.899086 12.3676782,97.1213758 12.3676782,77.2886653 C12.3676782,41.5404296 41.3561839,12.4567596 76.9874483,12.4567596 C90.1037701,12.4567596 102.317103,16.4016215 112.518943,23.1653623 L119.932736,13.2123354 C107.656874,4.90423098 92.8771034,0.048803367 76.9874483,0.048803367 C34.5364138,0.048803367 -0.000137931034,34.6982714 -0.000137931034,77.2886653 C-0.000137931034,101.181558 10.8702069,122.574315 27.9088276,136.753585" id="Fill-28" fill="#FFFFFF" fill-rule="nonzero" mask="url(#mask-2)"></path>
+                    </g>
+                </g>
+                <path d="M129.615482,21 L122.156926,31.0401084 C134.161732,42.8558389 141.626268,59.3218759 141.626268,77.5117055 C141.626268,113.374921 112.622818,142.552135 76.9731848,142.552135 C65.5378673,142.552135 54.7888805,139.546026 45.4590157,134.283947 L38,144.324518 C49.4403775,151.103997 62.7621842,155 76.9731848,155 C119.446104,155 154,120.239086 154,77.5117055 C154,55.2463212 144.613094,35.147131 129.615482,21" id="Fill-31" fill="#FFFFFF" fill-rule="nonzero"></path>
+            </g>
+        </g>
+    </g>
+</svg>
