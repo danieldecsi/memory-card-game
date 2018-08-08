@@ -6,16 +6,17 @@ class App extends Component {
     super(props);
 
     this.state = {
-      deck: this.initializeDeck(),
+      deckSize: 6,
+      deck: this.initializeDeck(6),
     };
+
+    this.numberOfCards = Array.from({ length: 15 }).map((_, index) => index + 6);
   }
 
-  initializeDeck() {
-    const DECK_SIZE = 3;
-
+  initializeDeck(deckSize) {
     const deck = [
-      ...Array.from({ length: DECK_SIZE }).map((_, index) => index),
-      ...Array.from({ length: DECK_SIZE }).map((_, index) => index),
+      ...Array.from({ length: deckSize }).map((_, index) => index),
+      ...Array.from({ length: deckSize }).map((_, index) => index),
     ].map(this.intializeCard);
 
     for (let i = 0; i < deck.length; i++) {
@@ -53,6 +54,14 @@ class App extends Component {
             </div>
           ))}
         </div>
+        <select
+          value={this.state.deckSize}
+          onChange={this.onDeckSizeChange}
+        >
+          {this.numberOfCards.map((n) => (
+            <option key={n} value={n}>{n}</option>
+          ))}
+        </select>
         <button onClick={this.restart}>Restart</button>
       </Fragment>
     );
@@ -129,9 +138,15 @@ class App extends Component {
     }
   }
 
+  onDeckSizeChange = (e) => {
+    const deckSize = parseInt(e.target.value, 10);
+
+    this.setState(() => ({ deckSize }));
+  }
+
   restart = () => {
-    this.setState(() => ({
-      deck: this.initializeDeck(),
+    this.setState(({ deckSize }) => ({
+      deck: this.initializeDeck(deckSize),
     }))
   }
 }
