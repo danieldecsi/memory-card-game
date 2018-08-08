@@ -8,6 +8,7 @@ class App extends Component {
     this.state = {
       deckSize: 6,
       deck: this.initializeDeck(6),
+      freeze: false,
     };
 
     this.numberOfCards = Array.from({ length: 15 }).map((_, index) => index + 6);
@@ -68,7 +69,7 @@ class App extends Component {
   }
 
   onCardClick = (clickedCard) => {
-    if (clickedCard.revealed || clickedCard.matched) {
+    if (clickedCard.revealed || clickedCard.matched || this.state.freeze) {
       return;
     }
 
@@ -97,18 +98,26 @@ class App extends Component {
     }
 
     if (firstCard.value !== secondCard.value) {
-      this.setState(({ deck }) => ({
-        deck: deck.map((card) => {
-          if (card.matched || !card.revealed) {
-            return card;
-          }
+      this.setState(
+        () => ({ freeze: true }),
+        () => {
+          setTimeout(() => {
+            this.setState(({ deck }) => ({
+              deck: deck.map((card) => {
+                if (card.matched || !card.revealed) {
+                  return card;
+                }
 
-          return {
-            ...card,
-            revealed: false,
-          };
-        }),
-      }));
+                return {
+                  ...card,
+                  revealed: false,
+                };
+              }),
+              freeze: false,
+            }));
+          }, 1000);
+        },
+      );
 
       return;
     }
