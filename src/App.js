@@ -1,19 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import './App.css';
 import { Header } from './components/header/Header';
-
-const CARD_IMAGES = [
-  'angular',
-  'd3',
-  'jenkins',
-  'postcss',
-  'react',
-  'redux',
-  'sass',
-  'supercharge',
-  'ts',
-  'webpack',
-];
+import { Card } from './components/card/Card';
 
 class App extends Component {
   constructor(props) {
@@ -66,30 +54,11 @@ class App extends Component {
           flexWrap: 'wrap',
         }}>
           {this.state.deck.map((card) => (
-            <div
+            <Card
               key={card.key}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: '100px',
-                height: '100px',
-                border: '1px solid #ccc',
-              }}
+              card={card}
               onClick={() => this.onCardClick(card)}
-            >
-              {(card.revealed || card.matched) && (
-                <img
-                  src={`./cards/${CARD_IMAGES[card.value]}.png`}
-                  alt={CARD_IMAGES[card.value]}
-                  style={{
-                    display: 'inline-block',
-                    width: '50px',
-                    height: '50px',
-                  }}
-                />
-              )}
-            </div>
+            />
           ))}
         </div>
       </Fragment>

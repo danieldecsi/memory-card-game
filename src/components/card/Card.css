@@ -1,0 +1,18 @@
+.Card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 150px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 1px 3px 2px #bbb;
+  background-color: rgb(255, 255, 255);
+  cursor: pointer;
+}
+
+.CardImage {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+}
