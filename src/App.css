@@ -1,3 +1,7 @@
-.AppBoardContainer {
-  margin-top: 2rem;
+.AppContentContainer {
+  display: flex;
+  flex-direction: column;
+  width: 960px;
+  max-width: calc(100% - 2rem);
+  margin: 0 auto;
 }

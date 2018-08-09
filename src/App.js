@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import './App.css';
 import { Header } from './components/header/Header';
+import { Statistics } from './components/statistics/Statistics';
 import { Board } from './components/board/Board';
 
 class App extends Component {
@@ -11,6 +12,7 @@ class App extends Component {
       deckSize: 6,
       deck: this.initializeDeck(6),
       freeze: false,
+      currentTries: 0,
     };
 
     this.deckSizeOptions = Array.from({ length: 5 }).map((_, index) => index + 6);
@@ -40,18 +42,24 @@ class App extends Component {
   }
 
   render() {
+    const { deckSize, currentTries, deck } = this.state;
+
     return (
       <Fragment>
         <Header
-          deckSize={this.state.deckSize}
+          deckSize={deckSize}
           onDeckSizeChange={this.onDeckSizeChange}
           deckSizeOptions={this.deckSizeOptions}
           onStarNewGamePress={this.onNewGameClick}
         />
 
-        <div className='AppBoardContainer'>
+        <div className='AppContentContainer'>
+          <Statistics
+            currentTries={currentTries}
+          />
+
           <Board
-            deck={this.state.deck}
+            deck={deck}
             onCardClick={this.onCardClick}
           />
         </div>
@@ -90,7 +98,10 @@ class App extends Component {
 
     if (firstCard.value !== secondCard.value) {
       this.setState(
-        () => ({ freeze: true }),
+        ({ currentTries }) => ({
+          freeze: true,
+          currentTries: currentTries + 1,
+        }),
         () => {
           setTimeout(() => {
             this.setState(({ deck }) => ({
@@ -114,7 +125,7 @@ class App extends Component {
     }
 
     this.setState(
-      ({ deck }) => ({
+      ({ deck, currentTries }) => ({
         deck: deck.map((card) => {
           if (!card.revealed) {
             return card;
@@ -125,6 +136,7 @@ class App extends Component {
             matched: true,
           };
         }),
+        currentTries: currentTries + 1,
       }),
       () => this.checkWin(),
     );
@@ -147,6 +159,7 @@ class App extends Component {
   onNewGameClick = () => {
     this.setState(({ deckSize }) => ({
       deck: this.initializeDeck(deckSize),
+      currentTries: 0,
     }))
   }
 }
