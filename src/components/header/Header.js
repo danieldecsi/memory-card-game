@@ -9,7 +9,7 @@ export const Header = ({
 }) => (
   <header className='Header'>
     <div className='HeaderLeft'>
-      <img className='HeaderLogo' src='./logo.svg' />
+      <img className='HeaderLogo' src='./logo.svg' alt='Supercharge' />
     </div>
     <div className='HeaderMiddle'>
       Deck size:

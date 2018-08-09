@@ -5,6 +5,10 @@
   padding: 1rem 0;
 }
 
+.StatisticsBestContainer {
+  text-align: center;
+}
+
 .StatisticsRestartButton {
   box-sizing: border-box;
   padding: 0 1rem;

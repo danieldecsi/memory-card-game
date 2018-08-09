@@ -4,6 +4,8 @@ import { Header } from './components/header/Header';
 import { Statistics } from './components/statistics/Statistics';
 import { Board } from './components/board/Board';
 
+const LOCAL_STORAGE_HIGHSCORES_KEY = 'highscores';
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -13,6 +15,7 @@ class App extends Component {
       deck: this.initializeDeck(6),
       freeze: false,
       currentTries: 0,
+      highscores: this.restoreHighscores(),
     };
 
     this.deckSizeOptions = Array.from({ length: 5 }).map((_, index) => index + 6);
@@ -41,8 +44,26 @@ class App extends Component {
     };
   }
 
+  restoreHighscores() {
+    let highscores = {};
+
+    const serializedHighscores = localStorage.getItem(LOCAL_STORAGE_HIGHSCORES_KEY);
+    if (serializedHighscores) {
+      highscores = JSON.parse(serializedHighscores);
+    }
+
+    return highscores;
+  }
+
+  persistHighscores() {
+    const { highscores } = this.state;
+
+    const serializedHighscores = JSON.stringify(highscores);
+    localStorage.setItem(LOCAL_STORAGE_HIGHSCORES_KEY, serializedHighscores);
+  }
+
   render() {
-    const { deckSize, currentTries, deck } = this.state;
+    const { deckSize, currentTries, highscores, deck } = this.state;
 
     return (
       <Fragment>
@@ -56,6 +77,7 @@ class App extends Component {
         <div className='AppContentContainer'>
           <Statistics
             currentTries={currentTries}
+            best={highscores[deckSize]}
             onRestartClick={this.onNewGameClick}
           />
 
@@ -147,7 +169,21 @@ class App extends Component {
     const win = this.state.deck.every((card) => card.matched);
 
     if (win) {
-      alert('Nyertel');
+      const { currentTries, highscores, deckSize } = this.state;
+
+      if (!highscores[deckSize] || currentTries < highscores[deckSize]) {
+        alert(`Uj rekord: ${currentTries}!`);
+
+        this.setState(
+          ({ highscores }) => ({
+            highscores: {
+              ...highscores,
+              [deckSize]: currentTries,
+            },
+          }),
+          () => this.persistHighscores(),
+        );
+      }
     }
   }
 

@@ -9,9 +9,8 @@ export class Board extends Component {
     return (
       <div className='Board'>
         {deck.map((card) => (
-          <div className='BoardCardContainer'>
+          <div key={card.key} className='BoardCardContainer'>
             <Card
-              key={card.key}
               card={card}
               onClick={() => onCardClick(card)}
             />
