@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import './App.css';
 import { Header } from './components/header/Header';
-import { Card } from './components/card/Card';
+import { Board } from './components/board/Board';
 
 class App extends Component {
   constructor(props) {
@@ -49,17 +49,11 @@ class App extends Component {
           onStarNewGamePress={this.onNewGameClick}
         />
 
-        <div style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-        }}>
-          {this.state.deck.map((card) => (
-            <Card
-              key={card.key}
-              card={card}
-              onClick={() => this.onCardClick(card)}
-            />
-          ))}
+        <div className='AppBoardContainer'>
+          <Board
+            deck={this.state.deck}
+            onCardClick={this.onCardClick}
+          />
         </div>
       </Fragment>
     );
