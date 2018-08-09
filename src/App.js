@@ -56,6 +56,7 @@ class App extends Component {
         <div className='AppContentContainer'>
           <Statistics
             currentTries={currentTries}
+            onRestartClick={this.onNewGameClick}
           />
 
           <Board
